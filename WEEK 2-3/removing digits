@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main() {
+	// your code goes here
+	int n;
+	cin>>n;
+	vector<int>dp(n+1);
+	dp[0]=0;
+	for(int i=1;i<=n;i++){
+	    vector<int>v;
+	    int p=i;
+	    while(p!=0){
+	        v.push_back(p%10);
+	        p=p/10;
+	    }
+	    int m=INT_MAX;
+	    for(int j=0;j<v.size()  ;j++){
+	        if(v[j]!=0){
+	        m=min(m,dp[i-v[j]]);}
+	    }
+	    dp[i]=m+1;
+	}
+	cout<<dp[n]<<endl;}

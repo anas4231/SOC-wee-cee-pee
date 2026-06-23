@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int n,x;
+	cin>>n>>x;
+	 int c[n];
+	 for(int i=0;i<n;i++){
+	     cin>>c[i];
+	 }
+	  int f[x+1];
+	  f[0]=0;
+	  int m;
+	  for(int i=1;i<=x;i++){
+	       m=INT_MAX;
+	      for(int j=0;j<n;j++){
+	          if(i-c[j]<0){
+	              m=min(m,INT_MAX);
+	          }
+	         else m=min(m,f[i-c[j]]);
+	      }
+	      if(m!=INT_MAX){
+	      f[i]=m+1;}
+	      else f[i]=INT_MAX;
+	      
+	  }
+	  if(f[x]==INT_MAX){
+	      cout<<-1<<endl;	  }
+	      else{
+	  cout<<f[x]<<endl;
+
+}}

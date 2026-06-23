@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+long long n;
+long long m=1e9+7;
+cin>>n;
+vector<vector<long long>>a(n,vector<long long >(n));
+for(long long i=0;i<n;i++){
+    for(long long j=0;j<n;j++){
+        char x;
+        cin>>x;
+        if(x=='*')a[i][j]=0;
+        else a[i][j]=1;
+    }}
+    vector<vector<long long>>dp(n,vector<long long >(n));
+    if(a[0][0]==1){
+    dp[0][0]=1;}
+    else dp[0][0]=0;
+    for(long long i=0;i<n;i++){
+        for(long long  j=0;j<n;j++){
+            if(a[i][j]==0 && !(i==0 && j==0)){
+                dp[i][j]=0;
+            }
+            else if(a[i][j]==1 && !(i==0 && j==0)){
+                if(i!=0 && j!=0)
+                dp[i][j]=(dp[i-1][j]+dp[i][j-1])%m;
+                else if(i==0)
+                dp[i][j]=dp[i][j-1]%m;
+                else dp[i][j]=dp[i-1][j]%m;
+            }
+        }
+    }
+    cout<<dp[n-1][n-1]%m<<endl;
+}

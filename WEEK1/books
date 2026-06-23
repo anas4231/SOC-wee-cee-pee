@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main(){
+	ll n,t;
+	cin>>n>>t;
+	ll a[n];
+	for(int i=0;i<n;i++){
+		cin>>a[i];
+	}
+	ll l=0,r=0;
+	ll c=0;
+	ll s=0;
+	while(r<n){
+    if(s<=t ){
+		s+=a[r];
+	}
+	
+	while(s>t){
+		s=s-a[l];
+		l++;
+	}
+	c=max(c,r-l+1);
+	r++;
+	}
+	cout<<c<<endl;
+	}

@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main() {
+	// your code goes here
+	string s;
+	cin>>s;
+	ll n=s.size();
+	ll m;
+	cin>>m;
+	ll l[m],r[m];
+	for(int i=0;i<m;i++){
+	    cin>>l[i]>>r[i];
+	}
+	ll p[n-1],psum[n-1];
+	
+	for(int i=0;i<n-1;i++){
+	    if(s[i]==s[i+1]){
+	        p[i]=1;
+	    }
+	    else p[i]=0;
+	    if (i==0){
+	        psum[0]=p[0];
+	    }
+	    else{
+	    psum[i]=psum[i-1]+p[i];}
+	}
+	for(int i=0;i<m;i++){
+	    if(r[i]-l[i]==1){
+	        cout<<p[l[i]-1]<<endl;
+	    }
+	    else {
+	        cout<<psum[r[i]-2]-psum[l[i]-1]+p[l[i]-1]<<endl;
+	    }
+	}
+	
+	
+
+}
