@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}\
+
+const ll MAX = 2e5 + 7;
+const ll MOD = 1e9 + 7;
+
+int n, m;
+ vector<vector<int>>adj(MAX);
+vector<bool>visited(MAX, false);
+vector<bool>comp(MAX,false);
+
+void dfs(int s){
+	if(visited[s]) return;
+	visited[s]=true;
+	comp[s]=true;
+	for(auto x:adj[s]){
+		dfs(x);
+	}
+}
+
+int main(){
+
+	cin>>n>>m;
+
+	for(int i=0;i<m;i++){
+		int x,y;
+		cin>>x;
+		cin>>y;
+		adj[x].pb(y);
+		adj[y].pb(x);
+	}
+	int c=0;
+	vector<int>ans;
+	for(int i=1;i<=n;i++ ){
+    if(comp[i]){continue;}
+	else{
+	    ans.pb(i);
+		c++;
+		dfs(i);
+	}
+	}
+	cout<<c-1<<endl;
+    for(int i=0;i<ans.size()-1;i++){
+        cout<<ans[i]<<" "<<ans[i+1]<<endl;
+    }
+}

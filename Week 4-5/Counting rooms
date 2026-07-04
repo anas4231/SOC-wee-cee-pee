@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+vector<vector<int>>visited(1000,vector<int>(1000));
+vector<vector<char>>a(1000,vector<char>(1000));
+
+void dfs(int i,int j,int n,int m){
+	
+	if(i<0 ||j <0 || i>=n || j>=m) return;
+	if(visited[i][j])return;
+	if(a[i][j]=='#') return;
+	visited[i][j]=1;
+	dfs(i+1,j,n,m);
+	dfs(i,j+1,n,m);
+	dfs(i-1,j,n,m);
+	dfs(i,j-1,n,m);
+}
+
+int main(){
+	int n,m;
+	cin>>n>>m;
+  for(int i=0;i<n;i++){
+	for(int j =0;j<m;j++){
+		cin>>a[i][j];
+	}
+  }
+  int c=0;
+  for(int i=0;i<n;i++){
+	for(int j =0;j<m;j++){
+		if(visited[i][j] || a[i][j]=='#')continue;
+		c++;
+		dfs(i,j,n,m);}}
+		cout<<c<<endl;}
+     

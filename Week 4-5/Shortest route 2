@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+
+int main(){
+    int n,m,q;
+    cin>>n>>m>>q;
+    vector<vector<ll>>dist(n+1,vector<ll>(n+1));
+    vector<vector<ll>>adj(n+1,vector<ll>(n+1));
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){adj[i][j]=1e18;}}
+    for(int i=0 ;i<m;i++){
+        ll a,b,c;
+        cin>>a>>b>>c;
+        adj[a][b]=min(adj[a][b],c);
+        adj[b][a]=min(adj[b][a],c);
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            if(i==j)dist[i][j]=0;
+            else if(adj[i][j])dist[i][j]=adj[i][j];
+            else dist[i][j]=1e18;
+        }
+    }
+    
+    for(int k=1;k<=n;k++){
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n;j++){
+                dist[i][j]=min(dist[i][j],dist[i][k]+dist[k][j]);
+            }
+        }
+    }
+    for(int i=0;i<q;i++){
+        int a,b;
+        cin>>a>>b;
+        if(dist[a][b]==1e18)cout<<-1<<endl;
+        else cout<<dist[a][b]<<endl;
+    }
+   
+ }
