@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+ 
+int main(){
+  ll n;
+  cin>>n;
+  vi a;
+  for(int i=60;i>=0;i--){
+      if((n&(1LL<<i))!=0)a.pb(i);
+  }
+  Sort(a);
+  ll m=a.size();
+  ll k=a[m-1];
+ ll ans=0;
+  for(ll i=0;i<m;i++){
+      ans+=(m-i-1)*(1LL << a[i])+a[i]*(1LL << max(0,a[i]-1));
+  }
+  cout<<ans+m<<endl;}

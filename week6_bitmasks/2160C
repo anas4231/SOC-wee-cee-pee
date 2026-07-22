@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){ 
+        int n;
+        cin>>n;
+    bitset<30> b(n);
+    int r,l;
+    if(n==0)cout<<"Yes"<<endl;
+    else{
+    for(int i=0;i<30;i++){
+        if(b[i]){
+            r=i;break;
+        }
+        
+    }
+    for(int i=29;i>=0;i--){
+        if(b[i]){
+            l=i;break;
+        }
+        
+    }
+    vi p;
+    for(int i=r;i<=l;i++){
+      p.pb(b[i]);  
+    }
+    int m=p.size();
+    int x=0;
+    for(int i=0;i<m;i++){
+        if(p[i]!=p[m-i-1])x=1;
+    }
+    if(m%2==1){
+        if(p[m/2]==1)x=1;
+    }
+    if(x)cout<<"no"<<endl;
+    else cout<<"yes"<<endl;}}}

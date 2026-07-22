@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+
+int main(){
+ int t;
+ cin>>t;
+ while(t--){
+ int n;
+ cin>>n;
+ vi a(n);
+ read(a,n);
+ vi dp(n+1);
+ set<int>s;
+ for(int i=0;i<n;i++){
+     s.insert(a[i]);
+ }
+ if(s.count(1))dp[1]=1;
+ else dp[1]=-1;
+ for(int i=2;i<=n;i++){
+     if(s.count(i)) {dp[i]=1;continue;}
+    int b=0;
+    dp[i]=n;
+     for(int j=2;j<=round(sqrt(i));j++){
+        
+         
+         if(i%j==0){
+           
+             if(dp[j]!=-1 && dp[i/j]!=-1){
+             dp[i]=min(dp[i],dp[j]+dp[i/j]);b=1;}
+         }
+       
+     }
+       if(!b)dp[i]=-1;
+ }
+ for(int i=1;i<=n;i++){
+     cout<<dp[i]<<" ";
+ }
+ cout<<endl;}}

@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define pb push_back
+#define Sort(a) sort(a.begin(),a.end())
+#define fo(i,n) for(long long i=0;i<n;i++)
+#define read(a,n) for(long long i=0;i<n;i++){cin>>a[i];}
+const int N=200001;
+
+int main(){
+	int t;
+	cin>>t;
+
+    vector<vector<int>>v(1e6+1,vector<int>(1,1));
+   vector<int>vis(1e6+1,0);
+   for(int i=2;i<=1e6;i++){
+      if(vis[i])continue;
+       for(int j=i;j<1e6+1;j+=i){
+           v[j].pb(i);
+           vis[j]=1;
+           }
+   }
+	while(t--){
+   int n;
+   cin>>n;
+   vi a(n);
+   read(a,n);
+   int b=0,d=1;
+   vi c=a;
+   Sort(c);
+   if(c==a)d=0;
+   
+   for(int i=0;i<n;i++){
+       if(v[a[i]].size()>2)b=1;
+       a[i]=v[a[i]][v[a[i]].size()-1];
+   }
+   vi x=a;
+   Sort(x);
+   if(x!=a)b=1;
+   if(d==0)cout<<"Bob"<<endl;
+   else if(b)cout<<"Alice"<<endl;
+   else cout<<"Bob"<<endl;}}
